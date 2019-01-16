@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 1829644436}
   - component: {fileID: 1829644435}
   - component: {fileID: 1829644434}
+  - component: {fileID: 1829644437}
   m_Layer: 0
   m_Name: blade
   m_TagString: Untagged
@@ -461,6 +462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e1fcccb1ad5cf458a50d20db334aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bladeTrailPrefab: {fileID: 2256768250637437708, guid: 9e696d24a6d4696419ab375e9b44675c,
+    type: 3}
+  minCuttingVelocity: 10
 --- !u!4 &1829644436
 Transform:
   m_ObjectHideFlags: 0
@@ -469,9 +473,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829644433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.16, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1829644437
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829644433}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1

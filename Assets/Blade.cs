@@ -11,11 +11,16 @@ public class Blade : MonoBehaviour
     Camera cam;
     public GameObject bladeTrailPrefab;
     GameObject currentBladeTrail;
+    CircleCollider2D circleCollider;
+    Vector2 previousPosition;
+    public float minCuttingVelocity = 0.01f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -36,6 +41,7 @@ public class Blade : MonoBehaviour
 
     void UpdateCut()
     {
+
         Vector3 screenPosition;
         if (Input.GetMouseButton(0))
         {
@@ -45,16 +51,40 @@ public class Blade : MonoBehaviour
         {
             screenPosition = Input.GetTouch(0).position;
         }
-        rb.position = cam.ScreenToWorldPoint(screenPosition);
+        Vector2 newPosition = cam.ScreenToWorldPoint(screenPosition);
+        
+        rb.position = newPosition;
+        
+        if (currentBladeTrail == null)
+        {
+            previousPosition = newPosition;
+            Transform newTrans = transform;
+            newTrans.position = newPosition;
+            currentBladeTrail = Instantiate(bladeTrailPrefab, newTrans);
+        }
+
+        float velocity = (newPosition - previousPosition).magnitude / Time.deltaTime;
+        if(velocity> minCuttingVelocity)
+        {
+            circleCollider.enabled = true;
+        }
+        else
+        {
+            circleCollider.enabled = false;
+        }
+        previousPosition = newPosition;
     }
 
     void StartCutting() {
         isCutting = true;
-        currentBladeTrail =  Instantiate(bladeTrailPrefab, transform);
+        circleCollider.enabled = false;
+
     }
     void StopCutting() {
         isCutting = false;
         currentBladeTrail.transform.SetParent(null);
         Destroy(currentBladeTrail, 1);
+        currentBladeTrail = null;
+        circleCollider.enabled = false;
     }
 }
