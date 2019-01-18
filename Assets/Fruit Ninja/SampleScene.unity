@@ -353,7 +353,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruit: {fileID: 3676743131376046184, guid: 1477762a61881e4469bb201af5a14d2f, type: 3}
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 1928252571}
+  - {fileID: 1075026859}
+  - {fileID: 1282655594}
   minDelay: 0.1
   maxDelay: 1
 --- !u!4 &1363701607
