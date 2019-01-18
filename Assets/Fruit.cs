@@ -10,7 +10,9 @@ public class Fruit : MonoBehaviour
     {
         if(collision.tag == "Blade")
         {
-            Instantiate(fruitSlicedPrefab,transform.position,transform.rotation);
+            Vector3 direction = (collision.transform.position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            Instantiate(fruitSlicedPrefab,transform.position,rotation);
             Destroy(gameObject);
         }
     }
